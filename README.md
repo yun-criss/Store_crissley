@@ -1,2 +1,684 @@
 # store_crissley
-Web de tienda fisica
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STORE CRISSLEY · accesorios tecnológicos</title>
+  <!-- Google Fonts: Poppins + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ---------- TOKENS EDITABLES ---------- */
+    :root {
+      --primary-pink: #D462B3;
+      --soft-pink: #F5C6E8;
+      --deep-purple: #6C3B8E;
+      --light-purple: #B28BD4;
+      --neutral-bg: #F7F5F9;
+      --card-white: #FFFFFF;
+      --text-dark: #2D1B3D;
+      --heading-font: 'Poppins', sans-serif;
+      --body-font: 'Inter', sans-serif;
+      --shadow-card: 0 12px 28px rgba(108, 59, 142, 0.08);
+      
+      /* LOGO TEXT - EDITABLE AQUÍ */
+      --logo-text: "🛍️ SC";
+      
+      /* NOMBRE DE LA TIENDA */
+      --store-name: "STORE CRISSLEY";
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--body-font);
+      background: var(--neutral-bg);
+      color: var(--text-dark);
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      opacity: 0;
+      animation: fadeIn 0.9s ease forwards;
+    }
+    @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ----- HEADER (glassmorphism sticky) ----- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 6px 20px rgba(108, 59, 142, 0.06);
+      transition: background 0.25s, box-shadow 0.3s;
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 8px 30px rgba(108, 59, 142, 0.12);
+    }
+    .logo {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      color: var(--deep-purple);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .logo i { font-size: 1.8rem; color: var(--primary-pink); }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+    .nav-menu a:hover { color: var(--primary-pink); transition: 0.2s; }
+    .cart-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--deep-purple);
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .cart-btn:hover { color: var(--primary-pink); transform: scale(1.05); }
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--primary-pink);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 30px;
+      border: 2px solid white;
+      transition: 0.2s;
+    }
+    .cart-badge.bounce { animation: bounceBadge 0.4s ease; }
+    @keyframes bounceBadge {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.5); }
+      80% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+
+    /* ----- HERO (gradiente animado + burbujas) ----- */
+    .hero {
+      position: relative;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--soft-pink), var(--light-purple), var(--primary-pink));
+      background-size: 300% 300%;
+      animation: gradientMove 16s ease-in-out infinite;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: white;
+      text-shadow: 0 4px 18px rgba(108, 59, 142, 0.25);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      margin: 1rem 0 1.8rem;
+    }
+    .hero-cta {
+      background: var(--deep-purple);
+      color: white;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      transition: 0.25s;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(108, 59, 142, 0.3);
+      display: inline-block;
+    }
+    .hero-cta:hover {
+      background: var(--primary-pink);
+      transform: scale(1.04);
+      box-shadow: 0 12px 28px rgba(212, 98, 179, 0.4);
+    }
+    /* burbujas flotantes */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(3px);
+      animation: floatBubble 18s infinite alternate ease-in-out;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .bubble:nth-child(1) { width: 180px; height: 180px; top: 10%; left: 0%; animation-duration: 22s; }
+    .bubble:nth-child(2) { width: 280px; height: 280px; bottom: -30px; right: -20px; animation-duration: 26s; }
+    .bubble:nth-child(3) { width: 120px; height: 120px; top: 50%; left: 80%; animation-duration: 16s; }
+    @keyframes floatBubble {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.2); }
+    }
+
+    /* ----- secciones genéricas ----- */
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: var(--heading-font);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--deep-purple);
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* ----- pasos (cómo pedir) ----- */
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+    }
+    .step-item {
+      background: var(--card-white);
+      padding: 1.8rem 1.2rem;
+      border-radius: 40px;
+      flex: 1 1 180px;
+      max-width: 240px;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+      font-weight: 500;
+      border: 1px solid rgba(178, 139, 212, 0.2);
+    }
+    .step-item i { font-size: 2.2rem; color: var(--primary-pink); margin-bottom: 0.4rem; }
+
+    /* ----- ubicación / mapa ----- */
+    .location-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .map-frame {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 40px;
+      box-shadow: var(--shadow-card);
+      border: 0;
+      height: 280px;
+    }
+    .schedule-box {
+      background: var(--card-white);
+      padding: 1.2rem 2rem;
+      border-radius: 60px;
+      box-shadow: var(--shadow-card);
+      font-weight: 500;
+      text-align: center;
+      display: inline-block;
+    }
+    .direction-btn {
+      background: var(--deep-purple);
+      color: white;
+      padding: 0.7rem 2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.2s;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    .direction-btn:hover { background: var(--primary-pink); }
+
+    /* ----- footer ----- */
+    .footer {
+      background: var(--deep-purple);
+      color: white;
+      padding: 2.5rem 2rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .footer-logo { font-size: 1.8rem; font-weight: 700; }
+    .footer-links a { margin: 0 0.8rem; opacity: 0.8; transition: 0.2s; }
+    .footer-links a:hover { opacity: 1; color: var(--soft-pink); }
+    .footer-social a { font-size: 1.6rem; margin-left: 1rem; opacity: 0.8; transition: 0.2s; }
+    .footer-social a:hover { opacity: 1; color: var(--soft-pink); }
+    .footer-copy { text-align: center; width: 100%; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+
+    /* ----- back to top ----- */
+    .back-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-pink);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 20px rgba(212, 98, 179, 0.3);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s;
+      z-index: 999;
+      border: none;
+    }
+    .back-top.show { opacity: 1; visibility: visible; }
+    .back-top:hover { background: var(--deep-purple); transform: scale(1.06); }
+
+    /* ----- modal carrito ----- */
+    .cart-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(45, 27, 61, 0.5);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .cart-modal.open { display: flex; }
+    .cart-modal-content {
+      background: white;
+      max-width: 480px;
+      width: 90%;
+      padding: 2rem;
+      border-radius: 48px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .cart-list { margin: 1.2rem 0; }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-total { font-weight: 700; font-size: 1.3rem; margin: 1rem 0; }
+    .confirm-btn {
+      background: var(--deep-purple);
+      color: white;
+      padding: 0.7rem 2rem;
+      border: none;
+      border-radius: 60px;
+      font-weight: 600;
+      width: 100%;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .confirm-btn:hover { background: var(--primary-pink); }
+    .close-modal {
+      float: right;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+
+    /* ----- VENTANA CATÁLOGO (MODAL) ----- */
+    .catalog-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(45, 27, 61, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      padding: 1rem;
+    }
+    .catalog-modal.open { display: flex; }
+    .catalog-modal-content {
+      background: white;
+      max-width: 1000px;
+      width: 95%;
+      max-height: 90vh;
+      border-radius: 48px;
+      padding: 2rem;
+      overflow-y: auto;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .catalog-modal-content .close-catalog {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: var(--text-dark);
+      transition: 0.2s;
+    }
+    .catalog-modal-content .close-catalog:hover { color: var(--primary-pink); transform: scale(1.1); }
+    
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .catalog-card {
+      background: var(--card-white);
+      border-radius: 24px;
+      padding: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(108, 59, 142, 0.08);
+      border: 1px solid rgba(212, 98, 179, 0.1);
+      transition: 0.2s;
+    }
+    .catalog-card:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(108, 59, 142, 0.15); }
+    .catalog-card .emoji { font-size: 3rem; }
+    .catalog-card .name { font-weight: 600; margin: 0.3rem 0; }
+    .catalog-card .price { font-weight: 700; color: var(--deep-purple); }
+
+    /* ----- responsive ----- */
+    @media (max-width: 768px) {
+      .header { padding: 0.6rem 1.2rem; }
+      .nav-menu { gap: 1rem; font-size: 0.9rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-social a { margin: 0 0.6rem; }
+    }
+    @media (max-width: 480px) {
+      .header { flex-direction: column; gap: 0.5rem; }
+      .nav-menu { flex-wrap: wrap; justify-content: center; }
+    }
+
+    /* revelar scroll (Intersection Observer) */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="logo" id="logoContainer">
+    <i class="fas fa-store"></i> <span id="logoText">🛍️ SC</span>
+  </div>
+  <nav class="nav-menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#" id="catalogNavLink">Catálogo</a>
+    <a href="#pedidos">Pedidos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <button class="cart-btn" id="cartBtn" aria-label="Carrito">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="cart-badge" id="cartBadge">0</span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="hero-content">
+    <h1>✨ Accesorios que conectan tu estilo</h1>
+    <p>Encuentra los mejores accesorios para tus dispositivos</p>
+    <button class="hero-cta" id="heroCatalogBtn">Ver catálogo</button>
+  </div>
+</section>
+
+<!-- CÓMO PEDIR -->
+<section id="pedidos" class="section">
+  <h2 class="section-title">📋 ¿Cómo realizar tu pedido?</h2>
+  <div class="steps-grid" id="stepsContainer"></div>
+</section>
+
+<!-- UBICACIÓN Y HORARIOS -->
+<section id="contacto" class="section">
+  <h2 class="section-title">📍 Encuéntranos</h2>
+  <div class="location-container">
+    <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1591.123456789!2d-68.123456!3d-16.500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFeria%20barrio%20lindo!5e0!3m2!1ses!2sbo!4v1234567890" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="schedule-box">
+      <i class="fas fa-clock" style="color: var(--primary-pink);"></i> 
+      Miercoles y Sabados: 7:00 AM - 9:00 PM
+    </div>
+    <div style="text-align: center;">
+      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i> Feria barrio lindo, cooperativa 19 de noviembre, pasillo R #481</p>
+      <a href="https://maps.google.com/?q=Feria+barrio+lindo+cooperativa+19+de+noviembre+pasillo+R+%23481" target="_blank" class="direction-btn">Cómo llegar</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><i class="fas fa-store"></i> <span id="footerLogoText">🛍️ SC</span></div>
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#" id="footerCatalogLink">Catálogo</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://instagram.com/store_crissley" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://tiktok.com/@store_crissley" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://wa.me/59160978720" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="footer-copy">
+      <p>© 2026 STORE CRISSLEY · Con 💜 para tus dispositivos</p>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÓN VOLVER ARRIBA -->
+<button class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- MODAL CARRITO -->
+<div class="cart-modal" id="cartModal">
+  <div class="cart-modal-content">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <h3 style="font-family: var(--heading-font);">🛒 Tu pedido</h3>
+    <div class="cart-list" id="cartList"></div>
+    <div class="cart-total" id="cartTotal">Total: 0 bs</div>
+    <button class="confirm-btn" id="confirmOrder">✅ Confirmar pedido</button>
+  </div>
+</div>
+
+<!-- MODAL CATÁLOGO (vista para clientes) -->
+<div class="catalog-modal" id="catalogModal">
+  <div class="catalog-modal-content">
+    <span class="close-catalog" id="closeCatalog">&times;</span>
+    <h2 style="font-family: var(--heading-font); text-align: center; color: var(--deep-purple);">📦 Nuestro Catálogo</h2>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    // ---------- TOKENS ----------
+    const PRODUCTS = [
+      ["Mouse ", "50bs", "Mouse", "🖱️"],
+      ["Manilla Smartwatch ", "40bs", "Smartwatch", "⌚"],
+      ["Cargador Rápido 20W", "15bs", "Cargadores", "🔌"],
+      ["Auriculares", "55bs", "Auriculares", "🎧"],
+      ["Micrófono", "70bs", "Micrófonos", "🎙️"],
+      ["Soporte Ajustable para Móvil", "30bs", "Accesorios", "📱"],
+      ["Teclado ", "140bs", "Teclados", "⌨️"]
+    ];
+    const STEPS = [
+      "1. Elige tus productos favoritos",
+      "2. Personaliza/consulta tu pedido (color, funcion, compatibilidad, etc.)",
+      "3. Confirma tu selección",
+      "4. Recibe en la puerta de tu casa 🚀"
+    ];
+    
+    // ---------- LOGO EDITABLE ----------
+    const LOGO_TEXT = "🛍️ SC";  // <--- CAMBIA AQUÍ EL TEXTO DEL LOGO
+    
+    // Aplicar logo en todos los lugares
+    document.getElementById('logoText').textContent = LOGO_TEXT;
+    document.getElementById('footerLogoText').textContent = LOGO_TEXT;
+    
+    // ---------- PASOS (cómo pedir) ----------
+    const stepsContainer = document.getElementById('stepsContainer');
+    STEPS.forEach(step => {
+      const div = document.createElement('div');
+      div.className = 'step-item reveal';
+      const icon = step.includes('1') ? 'fa-star' : step.includes('2') ? 'fa-sliders-h' : step.includes('3') ? 'fa-check-circle' : 'fa-truck';
+      div.innerHTML = `<i class="fas ${icon}"></i><br>${step}`;
+      stepsContainer.appendChild(div);
+    });
+    
+    // ---------- CATÁLOGO MODAL ----------
+    const catalogModal = document.getElementById('catalogModal');
+    const catalogGrid = document.getElementById('catalogGrid');
+    const closeCatalog = document.getElementById('closeCatalog');
+    const heroCatalogBtn = document.getElementById('heroCatalogBtn');
+    const catalogNavLink = document.getElementById('catalogNavLink');
+    const footerCatalogLink = document.getElementById('footerCatalogLink');
+    
+    function openCatalog() {
+      // Renderizar productos en el modal
+      catalogGrid.innerHTML = '';
+      PRODUCTS.forEach(([name, price, cat, emoji]) => {
+        const card = document.createElement('div');
+        card.className = 'catalog-card';
+        card.innerHTML = `
+          <div class="emoji">${emoji}</div>
+          <div class="name">${name}</div>
+          <div style="font-size:0.8rem; color:#7a6490;">${cat}</div>
+          <div class="price">${price}</div>
+        `;
+        catalogGrid.appendChild(card);
+      });
+      catalogModal.classList.add('open');
+      document.body.style.overflow = 'hidden'; // evitar scroll
+    }
+    
+    function closeCatalogModal() {
+      catalogModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    // Eventos para abrir catálogo
+    heroCatalogBtn.addEventListener('click', openCatalog);
+    catalogNavLink.addEventListener('click', (e) => { e.preventDefault(); openCatalog(); });
+    footerCatalogLink.addEventListener('click', (e) => { e.preventDefault(); openCatalog(); });
+    
+    // Cerrar catálogo
+    closeCatalog.addEventListener('click', closeCatalogModal);
+    catalogModal.addEventListener('click', (e) => {
+      if (e.target === catalogModal) closeCatalogModal();
+    });
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && catalogModal.classList.contains('open')) closeCatalogModal();
+    });
+    
+    // ---------- CARRITO ----------
+    let cart = [];
+    const cartBadge = document.getElementById('cartBadge');
+    const cartModal = document.getElementById('cartModal');
+    const cartList = document.getElementById('cartList');
+    const cartTotal = document.getElementById('cartTotal');
+    const closeModal = document.getElementById('closeModal');
+    const cartBtn = document.getElementById('cartBtn');
+    const confirmBtn = document.getElementById('confirmOrder');
+    
+    // NOTA: Los productos NO se agregan desde el catálogo modal (solo visualización).
+    // Para agregar al carrito, el cliente debe contactar por WhatsApp o llamada.
+    // El carrito aquí es solo para demostración interactiva.
+    
+    // Agregar productos desde el catálogo principal (oculto) - NO se usa en esta versión
+    // Pero mantenemos la funcionalidad para que el botón "Agregar" funcione si se agrega en algún lugar
+    
+    function updateCartUI() {
+      const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+      cartBadge.textContent = totalItems;
+      if (totalItems > 0) cartBadge.classList.add('bounce');
+      setTimeout(() => cartBadge.classList.remove('bounce'), 400);
+    
+      cartList.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, idx) => {
+        const priceNum = parseInt(item.price.replace(/[^0-9]/g,''));
+        total += priceNum * item.qty;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `<span>${item.name} x${item.qty}</span><span>${item.qty * priceNum} bs</span>`;
+        cartList.appendChild(div);
+      });
+      cartTotal.textContent = `Total: ${total} bs`;
+    }
+    
+    // Abrir/cerrar carrito modal
+    cartBtn.addEventListener('click', () => { cartModal.classList.add('open'); updateCartUI(); });
+    closeModal.addEventListener('click', () => cartModal.classList.remove('open'));
+    cartModal.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.classList.remove('open'); });
+    
+    confirmBtn.addEventListener('click', () => {
+      if (cart.length === 0) { alert('🛒 Tu carrito está vacío.'); return; }
+      const total = cart.reduce((acc,item) => acc + parseInt(item.price.replace(/[^0-9]/g,'')) * item.qty, 0);
+      alert(`✅ Pedido confirmado! Total: ${total} bs.\n📱 Te contactaremos al +591 60978720`);
+      cart = [];
+      updateCartUI();
+      cartModal.classList.remove('open');
+    });
+    
+    // ---------- SCROLL HEADER + BACK TO TOP ----------
+    const header = document.getElementById('header');
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+      backTop.classList.toggle('show', window.scrollY > 300);
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    
+    // ---------- INTERSECTION OBSERVER (reveal) ----------
+    function observeReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+    }
+    observeReveal();
+    window.addEventListener('load', observeReveal);
+  })();
+</script>
+
+</body>
+</html>
