@@ -459,7 +459,7 @@
   </div>
   <nav class="nav-menu">
     <a href="#inicio">Inicio</a>
-    <a href="#" id="catalogNavLink">Catálogo</a>
+    <a href="#" id="catalogNavLink">Productos</a>
     <a href="#pedidos">Pedidos</a>
     <a href="#contacto">Contacto</a>
   </nav>
@@ -563,13 +563,13 @@
   (function(){
     // ---------- TOKENS ----------
     const PRODUCTS = [
-      ["Mouse ", "50bs", "Mouse", "🖱️"],
-      ["Manilla Smartwatch ", "40bs", "Smartwatch", "⌚"],
-      ["Cargador Rápido 20W", "15bs", "Cargadores", "🔌"],
-      ["Auriculares", "55bs", "Auriculares", "🎧"],
-      ["Micrófono", "70bs", "Micrófonos", "🎙️"],
-      ["Soporte Ajustable para Móvil", "30bs", "Accesorios", "📱"],
-      ["Teclado ", "140bs", "Teclados", "⌨️"]
+      ["Mouse ", "🖱️"],
+      ["Manilla Smartwatch ", "⌚"],
+      ["Cargador Rápido ", "🔌"],
+      ["Auriculares", "🎧"],
+      ["Micrófono", "🎙️"],
+      ["Soporte Ajustable para Móvil", "📱"],
+      ["Teclado ", "⌨️"]
     ];
     const STEPS = [
       "1. Elige tus productos favoritos",
@@ -585,15 +585,34 @@
     document.getElementById('SC').textContent = LOGO_TEXT;
     document.getElementById('SC').textContent = LOGO_TEXT;
     
-    // ---------- PASOS (cómo pedir) ----------
-    const stepsContainer = document.getElementById('stepsContainer');
-    STEPS.forEach(step => {
-      const div = document.createElement('div');
-      div.className = 'step-item reveal';
-      const icon = step.includes('1') ? 'fa-star' : step.includes('2') ? 'fa-sliders-h' : step.includes('3') ? 'fa-check-circle' : 'fa-truck';
-      div.innerHTML = `<i class="fas ${icon}"></i><br>${step}`;
-      stepsContainer.appendChild(div);
-    });
+  // ---------- PASOS (cómo pedir) ----------
+const STEPS = [
+  "📱 1. Accede a nuestro catálogo",
+  "❓ 2. Pregunta la disponibilidad del producto deseado",
+  "✅ 3. Confirma el producto",
+  "📍 4. Envíanos tu ubicación",
+  "🚪 5. Producto en la puerta de tu casa"
+];
+
+const stepsContainer = document.getElementById('stepsContainer');
+stepsContainer.innerHTML = '';
+
+STEPS.forEach(step => {
+  const div = document.createElement('div');
+  div.className = 'step-item reveal';
+  // Extraer el emoji del inicio (primer carácter o dos)
+  let iconEmoji = '📋';
+  // Buscar emojis comunes en el texto
+  const emojiRegex = /^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[📍📱❓✅🚪])/u;
+  const match = step.match(emojiRegex);
+  if (match) iconEmoji = match[0];
+  
+  div.innerHTML = `
+    <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">${iconEmoji}</div>
+    <span style="font-weight: 500; font-size: 1.05rem;">${step}</span>
+  `;
+  stepsContainer.appendChild(div);
+});
     
     // ---------- CATÁLOGO MODAL ----------
     const catalogModal = document.getElementById('catalogModal');
