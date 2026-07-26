@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STORE CRISSLEY · accesorios tecnológicos</title>
-  <!-- Google Fonts: Poppins + Inter -->
+  <title>SC store_Crissley · accesorios tecnológicos</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:opsz@14..32&display=swap" rel="stylesheet" />
-  <!-- Font Awesome 6 (free) -->
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    /* ---------- TOKENS EDITABLES ---------- */
+    /* ---------- TOKENS ---------- */
     :root {
       --primary-pink: #D462B3;
       --soft-pink: #F5C6E8;
@@ -24,12 +23,6 @@
       --heading-font: 'Poppins', sans-serif;
       --body-font: 'Inter', sans-serif;
       --shadow-card: 0 12px 28px rgba(108, 59, 142, 0.08);
-      
-      /* LOGO TEXT - EDITABLE AQUÍ */
-      --logo-text: "Store_crissley";
-      
-      /* NOMBRE DE LA TIENDA */
-      --store-name: "STORE CRISSLEY";
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,7 +40,7 @@
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* ----- HEADER (glassmorphism sticky) ----- */
+    /* ----- HEADER ----- */
     .header {
       position: sticky;
       top: 0;
@@ -68,17 +61,15 @@
       box-shadow: 0 8px 30px rgba(108, 59, 142, 0.12);
     }
     .logo {
-      font-family: var(--heading-font);
-      font-weight: 700;
-      font-size: 1.6rem;
-      letter-spacing: 1px;
-      color: var(--deep-purple);
       display: flex;
       align-items: center;
-      gap: 6px;
-      cursor: pointer;
+      gap: 12px;
     }
-    .logo i { font-size: 1.8rem; color: var(--primary-pink); }
+    .logo img {
+      height: 60px; /* Ajusta la altura según prefieras */
+      width: auto;
+      display: block;
+    }
     .nav-menu {
       display: flex;
       gap: 2rem;
@@ -117,25 +108,34 @@
       100% { transform: scale(1); }
     }
 
-    /* ----- HERO (gradiente animado + burbujas) ----- */
+    /* ----- HERO (con fondo de imagen) ----- */
     .hero {
       position: relative;
-      padding: 4rem 2rem;
-      background: linear-gradient(135deg, var(--soft-pink), var(--light-purple), var(--primary-pink));
-      background-size: 300% 300%;
-      animation: gradientMove 16s ease-in-out infinite;
+      padding: 6rem 2rem;
+      /* Aquí se usa la Imagen 2 como fondo */
+      background-image: url('fondo-tarjeta.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       text-align: center;
       overflow: hidden;
       isolation: isolate;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Capa oscura para que el texto se lea bien sobre la imagen */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(45, 27, 61, 0.5); /* Morado oscuro semitransparente */
+      z-index: 1;
     }
     .hero-content {
       position: relative;
-      z-index: 3;
+      z-index: 2;
       max-width: 700px;
       margin: 0 auto;
     }
@@ -144,12 +144,13 @@
       font-weight: 700;
       font-size: 2.8rem;
       color: white;
-      text-shadow: 0 4px 18px rgba(108, 59, 142, 0.25);
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
     }
     .hero p {
       font-size: 1.2rem;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.95);
       margin: 1rem 0 1.8rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .hero-cta {
       background: var(--deep-purple);
@@ -169,25 +170,8 @@
       transform: scale(1.04);
       box-shadow: 0 12px 28px rgba(212, 98, 179, 0.4);
     }
-    /* burbujas flotantes */
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(3px);
-      animation: floatBubble 18s infinite alternate ease-in-out;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .bubble:nth-child(1) { width: 180px; height: 180px; top: 10%; left: 0%; animation-duration: 22s; }
-    .bubble:nth-child(2) { width: 280px; height: 280px; bottom: -30px; right: -20px; animation-duration: 26s; }
-    .bubble:nth-child(3) { width: 120px; height: 120px; top: 50%; left: 80%; animation-duration: 16s; }
-    @keyframes floatBubble {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, -30px) scale(1.2); }
-    }
 
-    /* ----- secciones genéricas ----- */
+    /* ----- SECCIONES ----- */
     .section {
       padding: 3rem 2rem;
       max-width: 1280px;
@@ -202,37 +186,66 @@
       text-align: center;
     }
 
-/* ----- PASOS (cómo pedir) ----- */
-.steps-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.8rem;
-}
-.step-item {
-  background: var(--card-white);
-  padding: 1.8rem 1.2rem;
-  border-radius: 24px;
-  flex: 1 1 160px;
-  max-width: 220px;
-  box-shadow: var(--shadow-card);
-  text-align: center;
-  font-weight: 500;
-  border: 1px solid rgba(178, 139, 212, 0.2);
-  transition: 0.3s;
-  min-height: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.step-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(108, 59, 142, 0.15);
-  border-color: var(--primary-pink);
-}
+    /* ----- PRODUCTOS (sección de ejemplo) ----- */
+    .grid-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 2rem 1.2rem;
+    }
+    .product-card {
+      background: var(--card-white);
+      border-radius: 32px;
+      padding: 1.6rem 1rem 1.4rem;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.25s, box-shadow 0.3s;
+      text-align: center;
+      border: 1px solid rgba(212, 98, 179, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 40px rgba(108, 59, 142, 0.18);
+      border-color: var(--primary-pink);
+    }
+    .product-emoji { font-size: 3.6rem; margin-bottom: 0.2rem; }
+    .product-name { font-weight: 600; font-size: 1.1rem; }
+    .product-category { font-size: 0.8rem; color: #7a6490; margin: 0.2rem 0; }
+    .product-price { font-weight: 700; font-size: 1.2rem; color: var(--deep-purple); margin: 0.2rem 0 0.8rem; }
 
-    /* ----- ubicación / mapa ----- */
+    /* ----- PASOS (cómo pedir) ----- */
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+    .step-item {
+      background: var(--card-white);
+      padding: 1.8rem 1.2rem;
+      border-radius: 24px;
+      flex: 1 1 160px;
+      max-width: 220px;
+      box-shadow: var(--shadow-card);
+      text-align: center;
+      font-weight: 500;
+      border: 1px solid rgba(178, 139, 212, 0.2);
+      transition: 0.3s;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(108, 59, 142, 0.15);
+      border-color: var(--primary-pink);
+    }
+
+    /* ----- UBICACIÓN ----- */
     .location-container {
       display: flex;
       flex-direction: column;
@@ -268,7 +281,7 @@
     }
     .direction-btn:hover { background: var(--primary-pink); }
 
-    /* ----- footer ----- */
+    /* ----- FOOTER ----- */
     .footer {
       background: var(--deep-purple);
       color: white;
@@ -284,14 +297,18 @@
       align-items: center;
       gap: 1.8rem;
     }
-    .footer-logo { font-size: 1.8rem; font-weight: 700; }
+    .footer-logo img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
     .footer-links a { margin: 0 0.8rem; opacity: 0.8; transition: 0.2s; }
     .footer-links a:hover { opacity: 1; color: var(--soft-pink); }
     .footer-social a { font-size: 1.6rem; margin-left: 1rem; opacity: 0.8; transition: 0.2s; }
     .footer-social a:hover { opacity: 1; color: var(--soft-pink); }
     .footer-copy { text-align: center; width: 100%; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
 
-    /* ----- back to top ----- */
+    /* ----- BACK TO TOP ----- */
     .back-top {
       position: fixed;
       bottom: 2rem;
@@ -316,7 +333,31 @@
     .back-top.show { opacity: 1; visibility: visible; }
     .back-top:hover { background: var(--deep-purple); transform: scale(1.06); }
 
-    /* ----- modal carrito ----- */
+    /* ----- BOTÓN FLOTANTE WHATSAPP ----- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+    }
+
+    /* ----- MODAL CARRITO ----- */
     .cart-modal {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -365,7 +406,7 @@
       color: var(--text-dark);
     }
 
-    /* ----- VENTANA CATÁLOGO (MODAL) ----- */
+    /* ----- MODAL CATÁLOGO (demostración visual) ----- */
     .catalog-modal {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -380,9 +421,9 @@
     .catalog-modal.open { display: flex; }
     .catalog-modal-content {
       background: white;
-      max-width: 1000px;
+      max-width: 900px;
       width: 95%;
-      max-height: 90vh;
+      max-height: 85vh;
       border-radius: 48px;
       padding: 2rem;
       overflow-y: auto;
@@ -397,98 +438,106 @@
       cursor: pointer;
       color: var(--text-dark);
       transition: 0.2s;
+      background: var(--soft-pink);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .catalog-modal-content .close-catalog:hover { color: var(--primary-pink); transform: scale(1.1); }
-    
+    .catalog-modal-content .close-catalog:hover { 
+      color: white; 
+      background: var(--primary-pink); 
+      transform: scale(1.1); 
+    }
     .catalog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 1.5rem;
       margin-top: 1.5rem;
     }
     .catalog-card {
       background: var(--card-white);
       border-radius: 24px;
-      padding: 1.2rem;
+      padding: 1.5rem 1rem;
       text-align: center;
       box-shadow: 0 4px 12px rgba(108, 59, 142, 0.08);
       border: 1px solid rgba(212, 98, 179, 0.1);
-      transition: 0.2s;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
     }
-    .catalog-card:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(108, 59, 142, 0.15); }
-    .catalog-card .emoji { font-size: 3rem; }
-    .catalog-card .name { font-weight: 600; margin: 0.3rem 0; }
-    .catalog-card .price { font-weight: 700; color: var(--deep-purple); }
+    .catalog-card:hover { 
+      transform: scale(1.05); 
+      box-shadow: 0 8px 24px rgba(108, 59, 142, 0.15);
+      border-color: var(--primary-pink);
+    }
 
-    /* ----- responsive ----- */
+    /* ----- RESPONSIVE ----- */
     @media (max-width: 768px) {
       .header { padding: 0.6rem 1.2rem; }
       .nav-menu { gap: 1rem; font-size: 0.9rem; }
       .hero h1 { font-size: 2.2rem; }
       .footer-inner { flex-direction: column; text-align: center; }
       .footer-social a { margin: 0 0.6rem; }
+      .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 70px; right: 15px; }
+      .logo img { height: 45px; }
     }
     @media (max-width: 480px) {
       .header { flex-direction: column; gap: 0.5rem; }
       .nav-menu { flex-wrap: wrap; justify-content: center; }
+      .logo img { height: 40px; }
     }
 
-    /* revelar scroll (Intersection Observer) */
+    /* ----- REVEAL ANIMATION ----- */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <!-- Botón flotante de WhatsApp -->
-<a href="https://wa.me/59160978720" target="_blank" style="
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background: #25D366;
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.2rem;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-  z-index: 999;
-  transition: 0.3s;
-  text-decoration: none;
-" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
 <!-- HEADER -->
 <header class="header" id="header">
-  <div class="logo" id="logoContainer">
-    <i class="fas fa-store"></i> <span id="logoText">SC Store_Crissley</span>
-  </div>
-<nav class="nav-menu">
-  <a href="#inicio">Inicio</a>
-  <a href="#productos">Productos</a>
-  <a href="#pedidos">Pedidos</a>  <!-- ✅ Apunta a #pedidos -->
-  <a href="#contacto">Contacto</a>
-</nav>
+  <a href="#inicio" class="logo">
+    <!-- LOGO: Imagen 1 sin margen -->
+    <img src="logo.png" alt="Store Crissley Logo" />
+  </a>
+  <nav class="nav-menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#" id="catalogNavLink">Productos</a>
+    <a href="#pedidos">Pedidos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
   <button class="cart-btn" id="cartBtn" aria-label="Carrito">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-badge" id="cartBadge">0</span>
   </button>
 </header>
 
-<!-- HERO -->
-  <section id="inicio" class="hero">
-  <div class="bubble"></div>
-  <div class="bubble"></div>
-  <div class="bubble"></div>
+<!-- HERO (con fondo de la Imagen 2) -->
+<section id="inicio" class="hero">
   <div class="hero-content">
     <h1>✨ Accesorios que conectan tu estilo</h1>
     <p>Encuentra los mejores accesorios para tus dispositivos</p>
-    <a href="https://wa.me/59160978720" target="_blank" class="hero-cta">
-      <i class="fab fa-whatsapp"></i> Ver catálogo por WhatsApp
+    <button class="hero-cta" id="heroCatalogBtn">Ver productos </button>
+  </div>
+</section>
+
+<!-- PRODUCTOS (sección de ejemplo) -->
+<section id="productos" class="section">
+  <h2 class="section-title"> Nuestros Productos</h2>
+  <p style="text-align: center; margin-bottom: 2rem; color: var(--text-dark);">
+    Estos son algunos de los productos que ofrecemos. 
+    <br>¡Contáctanos por WhatsApp para más información y pedidos!
+  </p>
+  <div class="grid-products" id="productGrid"></div>
+  <div style="text-align: center; margin-top: 2.5rem;">
+    <a href="https://wa.me/59160978720" target="_blank" class="hero-cta" style="background: #25D366; padding: 0.7rem 2rem;">
+      <i class="fab fa-whatsapp"></i> Consultar disponibilidad por WhatsApp
     </a>
   </div>
 </section>
@@ -497,44 +546,36 @@
 <section id="pedidos" class="section">
   <h2 class="section-title">📋 ¿Cómo realizar tu pedido?</h2>
   <div class="steps-grid" id="stepsContainer">
-    <!-- Aquí se generarán los pasos con JavaScript -->
+    <!-- Los pasos se generan con JavaScript -->
   </div>
 </section>
 
-<!-- UBICACIÓN Y HORARIOS -->
+<!-- UBICACIÓN -->
 <section id="contacto" class="section">
   <h2 class="section-title">📍 Encuéntranos</h2>
   <div class="location-container">
-    
-    <!-- MAPA -->
-    <iframe 
-      class="map-frame" 
-      src="https://share.google/2mzyxjDxEZKK8aEti="lazy" 
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-    
-    <!-- HORARIOS -->
+    <iframe class="map-frame" src="https://share.google/2mzyxjDxEZKK8aEti="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="schedule-box">
       <i class="fas fa-clock" style="color: var(--primary-pink);"></i> 
-      Miercoles y Sabados: 7:00 AM - 9:00 PM
+      Miércoles y Sábados: 7:00 AM - 9:00 PM
     </div>
-    
-    <!-- DIRECCIÓN Y BOTÓN -->
     <div style="text-align: center;">
-      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i>Feria Barrio Lindo, cooperativa 19 de noviembre, pasillo R¨#481</p>
+      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i> Feria barrio lindo, cooperativa 19 de noviembre, pasillo R #481</p>
       <a href="https://share.google/2mzyxjDxEZKK8aEti" target="_blank" class="direction-btn">Cómo llegar 📍</a>
     </div>
-    
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo"><i class="fas fa-store"></i> <span id="footerLogoText">Store_Crissley</span></div>
+    <div class="footer-logo">
+      <img src="logo.png" alt="Store Crissley Logo" />
+    </div>
     <div class="footer-links">
       <a href="#inicio">Inicio</a>
-      <a href="#" id="footerCatalogLink">Catálogo</a>
+      <a href="#" id="footerCatalogLink">Productos</a>
+      <a href="#pedidos">Pedidos</a>
       <a href="#contacto">Contacto</a>
     </div>
     <div class="footer-social">
@@ -543,13 +584,18 @@
       <a href="https://wa.me/59160978720" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
     <div class="footer-copy">
-      <p>© 2026 STORE CRISSLEY · Con 💜 para tus dispositivos</p>
+      <p>© 2026 SC store_Crissley · Con 💜 para tus dispositivos</p>
     </div>
   </div>
 </footer>
 
 <!-- BOTÓN VOLVER ARRIBA -->
 <button class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></button>
+
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/59160978720" target="_blank" class="whatsapp-float" id="whatsappFloat">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 <!-- MODAL CARRITO -->
 <div class="cart-modal" id="cartModal">
@@ -562,102 +608,104 @@
   </div>
 </div>
 
-<!-- MODAL CATÁLOGO (vista para clientes) -->
+<!-- MODAL CATÁLOGO (demostración visual) -->
 <div class="catalog-modal" id="catalogModal">
   <div class="catalog-modal-content">
     <span class="close-catalog" id="closeCatalog">&times;</span>
-    <h2 style="font-family: var(--heading-font); text-align: center; color: var(--deep-purple);">📦 Nuestro Catálogo</h2>
+    <h2 style="font-family: var(--heading-font); text-align: center; color: var(--deep-purple); font-size: 2rem;">
+      🛍️ Productos disponibles
+    </h2>
+    <p style="text-align: center; color: #7a6490; margin-top: 0.5rem;">
+      Estos son algunos de los productos que tenemos en tienda
+    </p>
     <div class="catalog-grid" id="catalogGrid"></div>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="https://wa.me/59160978720" target="_blank" class="hero-cta" style="background: #25D366; padding: 0.7rem 2rem;">
+        <i class="fab fa-whatsapp"></i> Consultar disponibilidad
+      </a>
+    </div>
   </div>
 </div>
 
+<!-- ============ JAVASCRIPT ============ -->
 <script>
   (function(){
     // ---------- TOKENS ----------
     const PRODUCTS = [
-      ["Mouse ", "🖱️"],
-      ["Manilla Smartwatch ", "⌚"],
-      ["Cargador Rápido ", "🔌"],
-      ["Auriculares", "🎧"],
-      ["Micrófono", "🎙️"],
-      ["Soporte Ajustable para Móvil", "📱"],
-      ["Teclado ", "⌨️"]
+      ["Mouse ", "50bs", "Mouse", "🖱️"],
+      ["Manilla Smartwatch ", "40bs", "Smartwatch", "⌚"],
+      ["Cargador Rápido 20W", "15bs", "Cargadores", "🔌"],
+      ["Auriculares", "55bs", "Auriculares", "🎧"],
+      ["Micrófono", "70bs", "Micrófonos", "🎙️"],
+      ["Soporte Ajustable para Móvil", "30bs", "Accesorios", "📱"],
+      ["Teclado ", "140bs", "Teclados", "⌨️"]
     ];
+    
+    // ---------- PASOS ----------
     const STEPS = [
-      "1. Elige tus productos favoritos",
-      "2. Personaliza/consulta tu pedido (color,compatibilidad,etc.)",
-      "3. Confirma tu selección",
-      "4. Recibe en la puerta de tu casa (envianos tu ubicacion 🚀"
+      "1. Accede a nuestro catálogo",
+      "2. Pregunta la disponibilidad del producto deseado",
+      "3. Confirma el producto",
+      "4. Envíanos tu ubicación",
+      "5. Producto en la puerta de tu casa"
     ];
     
-    // ---------- LOGO EDITABLE ----------
-    const LOGO_TEXT = "store_crissley.bo";  // <--- CAMBIA AQUÍ EL TEXTO DEL LOGO
+    // ---------- RENDERIZAR PASOS ----------
+    const stepsContainer = document.getElementById('stepsContainer');
+    if (stepsContainer) {
+      stepsContainer.innerHTML = '';
+      STEPS.forEach(step => {
+        const div = document.createElement('div');
+        div.className = 'step-item reveal';
+        let iconEmoji = '📋';
+        const emojiRegex = /^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[📍📱❓✅🚪])/u;
+        const match = step.match(emojiRegex);
+        if (match) iconEmoji = match[0];
+        div.innerHTML = `
+          <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">${iconEmoji}</div>
+          <span style="font-weight: 500; font-size: 1.05rem;">${step}</span>
+        `;
+        stepsContainer.appendChild(div);
+      });
+    }
     
-    // Aplicar logo en todos los lugares
-    document.getElementById('SC').textContent = LOGO_TEXT;
-    document.getElementById('SC').textContent = LOGO_TEXT;
+    // ---------- RENDERIZAR PRODUCTOS (sección de ejemplo) ----------
+    const productGrid = document.getElementById('productGrid');
+    if (productGrid) {
+      PRODUCTS.forEach(([name, price, cat, emoji]) => {
+        const card = document.createElement('div');
+        card.className = 'product-card reveal';
+        card.innerHTML = `
+          <div class="product-emoji">${emoji}</div>
+          <div class="product-name">${name}</div>
+          <div class="product-category">${cat}</div>
+          <div class="product-price">${price}</div>
+        `;
+        productGrid.appendChild(card);
+      });
+    }
     
-// ---------- PASOS (cómo pedir) ----------
-const STEPS = [
-  "📱 1. Accede a nuestro catálogo",
-  "❓ 2. Pregunta la disponibilidad del producto deseado",
-  "✅ 3. Confirma el producto",
-  "📍 4. Envíanos tu ubicación",
-  "🚪 5. Producto en la puerta de tu casa"
-];
-
-// Renderizar pasos
-const stepsContainer = document.getElementById('stepsContainer');
-if (stepsContainer) {
-  stepsContainer.innerHTML = '';
-  
-  STEPS.forEach(step => {
-    const div = document.createElement('div');
-    div.className = 'step-item reveal';
-    
-    // Extraer el emoji del inicio del texto
-    let iconEmoji = '📋';
-    const emojiRegex = /^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[📍📱❓✅🚪])/u;
-    const match = step.match(emojiRegex);
-    if (match) iconEmoji = match[0];
-    
-    div.innerHTML = `
-      <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">${iconEmoji}</div>
-      <span style="font-weight: 500; font-size: 1.05rem;">${step}</span>
-    `;
-    stepsContainer.appendChild(div);
-  });
-  
-  console.log('✅ Pasos renderizados correctamente');
-} else {
-  console.error('❌ No se encontró el elemento con id="stepsContainer"');
-}
-    
-    // ---------- CATÁLOGO MODAL ----------
+    // ---------- CATÁLOGO MODAL (solo emoji + nombre) ----------
     const catalogModal = document.getElementById('catalogModal');
     const catalogGrid = document.getElementById('catalogGrid');
     const closeCatalog = document.getElementById('closeCatalog');
     const heroCatalogBtn = document.getElementById('heroCatalogBtn');
     const catalogNavLink = document.getElementById('catalogNavLink');
     const footerCatalogLink = document.getElementById('footerCatalogLink');
-
     
     function openCatalog() {
-      // Renderizar productos en el modal
       catalogGrid.innerHTML = '';
       PRODUCTS.forEach(([name, price, cat, emoji]) => {
         const card = document.createElement('div');
         card.className = 'catalog-card';
         card.innerHTML = `
-          <div class="emoji">${emoji}</div>
-          <div class="name">${name}</div>
-          <div style="font-size:0.8rem; color:#7a6490;">${cat}</div>
-          <div class="price">${price}</div>
+          <div style="font-size: 4rem; margin-bottom: 0.3rem;">${emoji}</div>
+          <div style="font-weight: 600; font-size: 1.1rem; color: var(--text-dark);">${name.trim()}</div>
         `;
         catalogGrid.appendChild(card);
       });
       catalogModal.classList.add('open');
-      document.body.style.overflow = 'hidden'; // evitar scroll
+      document.body.style.overflow = 'hidden';
     }
     
     function closeCatalogModal() {
@@ -665,22 +713,23 @@ if (stepsContainer) {
       document.body.style.overflow = '';
     }
     
-    // Eventos para abrir catálogo
-    heroCatalogBtn.addEventListener('click', openCatalog);
-    catalogNavLink.addEventListener('click', (e) => { e.preventDefault(); openCatalog(); });
-    footerCatalogLink.addEventListener('click', (e) => { e.preventDefault(); openCatalog(); });
+    if (heroCatalogBtn) heroCatalogBtn.addEventListener('click', openCatalog);
+    if (catalogNavLink) catalogNavLink.addEventListener('click', (e) => { e.preventDefault(); openCatalog(); });
+    if (footerCatalogLink) footerCatalogLink.addEventListener('click', (e) => { e.preventDefault(); openCatalog(); });
     
-    // Cerrar catálogo
-    closeCatalog.addEventListener('click', closeCatalogModal);
-    catalogModal.addEventListener('click', (e) => {
-      if (e.target === catalogModal) closeCatalogModal();
-    });
-    // Cerrar con tecla ESC
+    if (closeCatalog) closeCatalog.addEventListener('click', closeCatalogModal);
+    if (catalogModal) {
+      catalogModal.addEventListener('click', (e) => {
+        if (e.target === catalogModal) closeCatalogModal();
+      });
+    }
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && catalogModal.classList.contains('open')) closeCatalogModal();
+      if (e.key === 'Escape' && catalogModal && catalogModal.classList.contains('open')) {
+        closeCatalogModal();
+      }
     });
     
-    // ---------- CARRITO ----------
+    // ---------- CARRITO (demo) ----------
     let cart = [];
     const cartBadge = document.getElementById('cartBadge');
     const cartModal = document.getElementById('cartModal');
@@ -690,22 +739,14 @@ if (stepsContainer) {
     const cartBtn = document.getElementById('cartBtn');
     const confirmBtn = document.getElementById('confirmOrder');
     
-    // NOTA: Los productos NO se agregan desde el catálogo modal.
-    // Para agregar al carrito, el cliente debe contactar por WhatsApp o llamada.
-    // El carrito aquí es solo para demostración interactiva.
-    
-    // Agregar productos desde el catálogo principal (oculto) - NO se usa en esta versión
-    // Pero mantenemos la funcionalidad para que el botón "Agregar" funcione si se agrega en algún lugar
-    
     function updateCartUI() {
       const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
       cartBadge.textContent = totalItems;
       if (totalItems > 0) cartBadge.classList.add('bounce');
       setTimeout(() => cartBadge.classList.remove('bounce'), 400);
-    
       cartList.innerHTML = '';
       let total = 0;
-      cart.forEach((item, idx) => {
+      cart.forEach((item) => {
         const priceNum = parseInt(item.price.replace(/[^0-9]/g,''));
         total += priceNum * item.qty;
         const div = document.createElement('div');
@@ -716,30 +757,46 @@ if (stepsContainer) {
       cartTotal.textContent = `Total: ${total} bs`;
     }
     
-    // Abrir/cerrar carrito modal
-    cartBtn.addEventListener('click', () => { cartModal.classList.add('open'); updateCartUI(); });
-    closeModal.addEventListener('click', () => cartModal.classList.remove('open'));
-    cartModal.addEventListener('click', (e) => { if (e.target === cartModal) cartModal.classList.remove('open'); });
-    
-    confirmBtn.addEventListener('click', () => {
-      if (cart.length === 0) { alert('🛒 Tu carrito está vacío.'); return; }
-      const total = cart.reduce((acc,item) => acc + parseInt(item.price.replace(/[^0-9]/g,'')) * item.qty, 0);
-      alert(`✅ Pedido confirmado! Total: ${total} bs.\n📱 Te contactaremos al +591 60978720`);
-      cart = [];
+    // (Opcional) Agregar productos desde la sección de ejemplo
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.add-cart-btn');
+      if (!btn) return;
+      const name = btn.dataset.name;
+      const price = btn.dataset.price;
+      const existing = cart.find(item => item.name === name);
+      if (existing) existing.qty += 1;
+      else cart.push({ name, price, qty: 1 });
       updateCartUI();
-      cartModal.classList.remove('open');
     });
+    
+    if (cartBtn) cartBtn.addEventListener('click', () => { cartModal.classList.add('open'); updateCartUI(); });
+    if (closeModal) closeModal.addEventListener('click', () => cartModal.classList.remove('open'));
+    if (cartModal) {
+      cartModal.addEventListener('click', (e) => {
+        if (e.target === cartModal) cartModal.classList.remove('open');
+      });
+    }
+    if (confirmBtn) {
+      confirmBtn.addEventListener('click', () => {
+        if (cart.length === 0) { alert('🛒 Tu carrito está vacío.'); return; }
+        const total = cart.reduce((acc,item) => acc + parseInt(item.price.replace(/[^0-9]/g,'')) * item.qty, 0);
+        alert(`✅ Pedido confirmado! Total: ${total} bs.\n📱 Te contactaremos al +591 60978720`);
+        cart = [];
+        updateCartUI();
+        cartModal.classList.remove('open');
+      });
+    }
     
     // ---------- SCROLL HEADER + BACK TO TOP ----------
     const header = document.getElementById('header');
     const backTop = document.getElementById('backTop');
     window.addEventListener('scroll', () => {
-      header.classList.toggle('scrolled', window.scrollY > 20);
-      backTop.classList.toggle('show', window.scrollY > 300);
+      if (header) header.classList.toggle('scrolled', window.scrollY > 20);
+      if (backTop) backTop.classList.toggle('show', window.scrollY > 300);
     });
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     
-    // ---------- INTERSECTION OBSERVER (reveal) ----------
+    // ---------- REVEAL OBSERVER ----------
     function observeReveal() {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
