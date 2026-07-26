@@ -467,12 +467,12 @@
   <div class="logo" id="logoContainer">
     <i class="fas fa-store"></i> <span id="logoText">SC Store_Crissley</span>
   </div>
-  <nav class="nav-menu">
-    <a href="#inicio">Inicio</a>
-    <a href="#" id="catalogNavLink">Productos</a>
-    <a href="#pedidos">Pedidos</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+<nav class="nav-menu">
+  <a href="#inicio">Inicio</a>
+  <a href="#productos">Productos</a>
+  <a href="#pedidos">Pedidos</a>  <!-- ✅ Apunta a #pedidos -->
+  <a href="#contacto">Contacto</a>
+</nav>
   <button class="cart-btn" id="cartBtn" aria-label="Carrito">
     <i class="fas fa-shopping-cart"></i>
     <span class="cart-badge" id="cartBadge">0</span>
@@ -497,7 +497,7 @@
 <section id="pedidos" class="section">
   <h2 class="section-title">📋 ¿Cómo realizar tu pedido?</h2>
   <div class="steps-grid" id="stepsContainer">
-    <!-- Los pasos se generarán aquí con JavaScript -->
+    <!-- Aquí se generarán los pasos con JavaScript -->
   </div>
 </section>
 
@@ -597,7 +597,7 @@
     document.getElementById('SC').textContent = LOGO_TEXT;
     document.getElementById('SC').textContent = LOGO_TEXT;
     
-  // ---------- PASOS (cómo pedir) ----------
+// ---------- PASOS (cómo pedir) ----------
 const STEPS = [
   "📱 1. Accede a nuestro catálogo",
   "❓ 2. Pregunta la disponibilidad del producto deseado",
@@ -606,25 +606,32 @@ const STEPS = [
   "🚪 5. Producto en la puerta de tu casa"
 ];
 
+// Renderizar pasos
 const stepsContainer = document.getElementById('stepsContainer');
-stepsContainer.innerHTML = '';
-
-STEPS.forEach(step => {
-  const div = document.createElement('div');
-  div.className = 'step-item reveal';
-  // Extraer el emoji del inicio (primer carácter o dos)
-  let iconEmoji = '📋';
-  // Buscar emojis comunes en el texto
-  const emojiRegex = /^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[📍📱❓✅🚪])/u;
-  const match = step.match(emojiRegex);
-  if (match) iconEmoji = match[0];
+if (stepsContainer) {
+  stepsContainer.innerHTML = '';
   
-  div.innerHTML = `
-    <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">${iconEmoji}</div>
-    <span style="font-weight: 500; font-size: 1.05rem;">${step}</span>
-  `;
-  stepsContainer.appendChild(div);
-});
+  STEPS.forEach(step => {
+    const div = document.createElement('div');
+    div.className = 'step-item reveal';
+    
+    // Extraer el emoji del inicio del texto
+    let iconEmoji = '📋';
+    const emojiRegex = /^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[📍📱❓✅🚪])/u;
+    const match = step.match(emojiRegex);
+    if (match) iconEmoji = match[0];
+    
+    div.innerHTML = `
+      <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">${iconEmoji}</div>
+      <span style="font-weight: 500; font-size: 1.05rem;">${step}</span>
+    `;
+    stepsContainer.appendChild(div);
+  });
+  
+  console.log('✅ Pasos renderizados correctamente');
+} else {
+  console.error('❌ No se encontró el elemento con id="stepsContainer"');
+}
     
     // ---------- CATÁLOGO MODAL ----------
     const catalogModal = document.getElementById('catalogModal');
