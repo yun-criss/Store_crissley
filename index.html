@@ -430,10 +430,32 @@
 </head>
 <body>
 
+  <!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/59160978720" target="_blank" style="
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 999;
+  transition: 0.3s;
+  text-decoration: none;
+" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
 <!-- HEADER -->
 <header class="header" id="header">
   <div class="logo" id="logoContainer">
-    <i class="fas fa-store"></i> <span id="logoText">🛍️ SC</span>
+    <i class="fas fa-store"></i> <span id="logoText">SC Store_Crissley</span>
   </div>
   <nav class="nav-menu">
     <a href="#inicio">Inicio</a>
@@ -475,8 +497,7 @@
     <!-- MAPA -->
     <iframe 
       class="map-frame" 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1!2d-68.123456!3d-16.500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFeria%20barrio%20lindo!5e0!3m2!1ses!2sbo!4v1234567890" 
-      loading="lazy" 
+      src="https://share.google/2mzyxjDxEZKK8aEti="lazy" 
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     
@@ -488,7 +509,7 @@
     
     <!-- DIRECCIÓN Y BOTÓN -->
     <div style="text-align: center;">
-      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i> [ESCRIBE AQUÍ TU DIRECCIÓN EXACTA]</p>
+      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i>Feria Barrio Lindo, cooperativa 19 de noviembre, pasillo R¨#481</p>
       <a href="https://share.google/2mzyxjDxEZKK8aEti" target="_blank" class="direction-btn">Cómo llegar 📍</a>
     </div>
     
@@ -498,7 +519,7 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo"><i class="fas fa-store"></i> <span id="footerLogoText">🛍️ SC</span></div>
+    <div class="footer-logo"><i class="fas fa-store"></i> <span id="footerLogoText">Store_Crissley</span></div>
     <div class="footer-links">
       <a href="#inicio">Inicio</a>
       <a href="#" id="footerCatalogLink">Catálogo</a>
@@ -582,7 +603,6 @@
     const catalogNavLink = document.getElementById('catalogNavLink');
     const footerCatalogLink = document.getElementById('footerCatalogLink');
 
-    <a href="https://wa.me/59160978720" target="_blank" class="hero-cta">Ver catálogo 📄</a>
     
     function openCatalog() {
       // Renderizar productos en el modal
