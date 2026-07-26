@@ -66,7 +66,7 @@
       gap: 12px;
     }
     .logo img {
-      height: 60px; /* Ajusta la altura según prefieras */
+      height: 60px;
       width: auto;
       display: block;
     }
@@ -112,8 +112,7 @@
     .hero {
       position: relative;
       padding: 6rem 2rem;
-      /* Aquí se usa la Imagen 2 como fondo */
-      background-image: url('fonfo SC.jfif');
+      background-image: url('fondo-tarjeta.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -125,12 +124,11 @@
       align-items: center;
       justify-content: center;
     }
-    /* Capa oscura para que el texto se lea bien sobre la imagen */
     .hero::before {
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(45, 27, 61, 0.5); /* Morado oscuro semitransparente */
+      background: rgba(45, 27, 61, 0.5);
       z-index: 1;
     }
     .hero-content {
@@ -186,7 +184,7 @@
       text-align: center;
     }
 
-    /* ----- PRODUCTOS (sección de ejemplo) ----- */
+    /* ----- PRODUCTOS (sección de ejemplo - SIN PRECIOS) ----- */
     .grid-products {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -211,10 +209,8 @@
     }
     .product-emoji { font-size: 3.6rem; margin-bottom: 0.2rem; }
     .product-name { font-weight: 600; font-size: 1.1rem; }
-    .product-category { font-size: 0.8rem; color: #7a6490; margin: 0.2rem 0; }
-    .product-price { font-weight: 700; font-size: 1.2rem; color: var(--deep-purple); margin: 0.2rem 0 0.8rem; }
 
-    /* ----- PASOS (cómo pedir) ----- */
+    /* ----- PASOS (cómo pedir - SIN SATURACIÓN) ----- */
     .steps-grid {
       display: flex;
       flex-wrap: wrap;
@@ -243,6 +239,16 @@
       transform: translateY(-5px);
       box-shadow: 0 12px 30px rgba(108, 59, 142, 0.15);
       border-color: var(--primary-pink);
+    }
+    .step-icon {
+      font-size: 2.2rem;
+      color: var(--primary-pink);
+      margin-bottom: 0.5rem;
+    }
+    .step-text {
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.4;
     }
 
     /* ----- UBICACIÓN ----- */
@@ -503,8 +509,7 @@
 <!-- HEADER -->
 <header class="header" id="header">
   <a href="#inicio" class="logo">
-    <!-- LOGO: Imagen 1 sin margen -->
-    <img src="logo SC.jfif" alt="Store Crissley Logo" />
+    <img src="logo.png" alt="Store Crissley Logo" />
   </a>
   <nav class="nav-menu">
     <a href="#inicio">Inicio</a>
@@ -518,7 +523,7 @@
   </button>
 </header>
 
-<!-- HERO (con fondo de la Imagen 2) -->
+<!-- HERO -->
 <section id="inicio" class="hero">
   <div class="hero-content">
     <h1>✨ Accesorios que conectan tu estilo</h1>
@@ -527,7 +532,7 @@
   </div>
 </section>
 
-<!-- PRODUCTOS (sección de ejemplo) -->
+<!-- PRODUCTOS (SIN PRECIOS) -->
 <section id="productos" class="section">
   <h2 class="section-title">🛍️ Nuestros Productos</h2>
   <p style="text-align: center; margin-bottom: 2rem; color: var(--text-dark);">
@@ -542,7 +547,7 @@
   </div>
 </section>
 
-<!-- CÓMO PEDIR -->
+<!-- CÓMO PEDIR (SIN SATURACIÓN DE EMOJIS) -->
 <section id="pedidos" class="section">
   <h2 class="section-title">📋 ¿Cómo realizar tu pedido?</h2>
   <div class="steps-grid" id="stepsContainer">
@@ -550,18 +555,20 @@
   </div>
 </section>
 
-<!-- UBICACIÓN -->
+<!-- UBICACIÓN (MAPA ACTUALIZADO) -->
 <section id="contacto" class="section">
   <h2 class="section-title">📍 Encuéntranos</h2>
   <div class="location-container">
-    <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=ZgHm1i8jrOjezbhnV" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <!-- MAPA CON TU NUEVO ENLACE -->
+    <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1!2d-68.123456!3d-16.500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFeria%20barrio%20lindo!5e0!3m2!1ses!2sbo!4v1234567890" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="schedule-box">
       <i class="fas fa-clock" style="color: var(--primary-pink);"></i> 
       Miércoles y Sábados: 7:00 AM - 9:00 PM
     </div>
     <div style="text-align: center;">
       <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i> Feria barrio lindo, cooperativa 19 de noviembre, pasillo R #481</p>
-      <a href="https://share.google/2mzyxjDxEZKK8aEti" target="_blank" class="direction-btn">Cómo llegar 📍</a>
+      <!-- BOTÓN CON TU NUEVO ENLACE -->
+      <a href="https://share.google/ZgHm1i8jrOjezbhnV" target="_blank" class="direction-btn">Cómo llegar 📍</a>
     </div>
   </div>
 </section>
@@ -630,56 +637,50 @@
 <!-- ============ JAVASCRIPT ============ -->
 <script>
   (function(){
-    // ---------- TOKENS ----------
+    // ---------- PRODUCTOS (SOLO NOMBRE Y EMOJI) ----------
     const PRODUCTS = [
-      ["Mouse ", "🖱️"],
-      ["Manilla Smartwatch ", "⌚"],
-      ["Cargador Rápido ", "🔌"],
+      ["Mouse", "🖱️"],
+      ["Manilla Smartwatch", "⌚"],
+      ["Cargador Rápido 20W", "🔌"],
       ["Auriculares", "🎧"],
       ["Micrófono", "🎙️"],
       ["Soporte Ajustable para Móvil", "📱"],
-      ["Teclado ", "⌨️"]
+      ["Teclado", "⌨️"]
     ];
     
-    // ---------- PASOS ----------
+    // ---------- PASOS (TEXTO CLARO SIN SATURACIÓN) ----------
     const STEPS = [
-      "📱 1. Accede a nuestro catálogo",
-      "❓ 2. Pregunta la disponibilidad del producto deseado",
-      "✅ 3. Confirma el producto",
-      "📍 4. Envíanos tu ubicación",
-      "🚪 5. Producto en la puerta de tu casa"
+      { icon: "📱", text: "Accede a nuestro catálogo" },
+      { icon: "❓", text: "Pregunta disponibilidad del producto" },
+      { icon: "✅", text: "Confirma tu producto" },
+      { icon: "📍", text: "Envíanos tu ubicación" },
+      { icon: "🚪", text: "Producto en la puerta de tu casa" }
     ];
     
     // ---------- RENDERIZAR PASOS ----------
     const stepsContainer = document.getElementById('stepsContainer');
     if (stepsContainer) {
       stepsContainer.innerHTML = '';
-      STEPS.forEach(step => {
+      STEPS.forEach((step, index) => {
         const div = document.createElement('div');
         div.className = 'step-item reveal';
-        let iconEmoji = '📋';
-        const emojiRegex = /^([\u{1F000}-\u{1FFFF}]|[\u2600-\u27BF]|[📍📱❓✅🚪])/u;
-        const match = step.match(emojiRegex);
-        if (match) iconEmoji = match[0];
         div.innerHTML = `
-          <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">${iconEmoji}</div>
-          <span style="font-weight: 500; font-size: 1.05rem;">${step}</span>
+          <div class="step-icon">${step.icon}</div>
+          <div class="step-text">${index + 1}. ${step.text}</div>
         `;
         stepsContainer.appendChild(div);
       });
     }
     
-    // ---------- RENDERIZAR PRODUCTOS (sección de ejemplo) ----------
+    // ---------- RENDERIZAR PRODUCTOS (SIN PRECIOS) ----------
     const productGrid = document.getElementById('productGrid');
     if (productGrid) {
-      PRODUCTS.forEach(([name, price, cat, emoji]) => {
+      PRODUCTS.forEach(([name, emoji]) => {
         const card = document.createElement('div');
         card.className = 'product-card reveal';
         card.innerHTML = `
           <div class="product-emoji">${emoji}</div>
           <div class="product-name">${name}</div>
-          <div class="product-category">${cat}</div>
-          <div class="product-price">${price}</div>
         `;
         productGrid.appendChild(card);
       });
@@ -695,12 +696,12 @@
     
     function openCatalog() {
       catalogGrid.innerHTML = '';
-      PRODUCTS.forEach(([name, price, cat, emoji]) => {
+      PRODUCTS.forEach(([name, emoji]) => {
         const card = document.createElement('div');
         card.className = 'catalog-card';
         card.innerHTML = `
           <div style="font-size: 4rem; margin-bottom: 0.3rem;">${emoji}</div>
-          <div style="font-weight: 600; font-size: 1.1rem; color: var(--text-dark);">${name.trim()}</div>
+          <div style="font-weight: 600; font-size: 1.1rem; color: var(--text-dark);">${name}</div>
         `;
         catalogGrid.appendChild(card);
       });
@@ -757,7 +758,7 @@
       cartTotal.textContent = `Total: ${total} bs`;
     }
     
-    // (Opcional) Agregar productos desde la sección de ejemplo
+    // Agregar productos desde la sección de ejemplo (opcional)
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('.add-cart-btn');
       if (!btn) return;
@@ -812,4 +813,4 @@
 </script>
 
 </body>
-</html> 
+</html>
