@@ -448,14 +448,16 @@
 </header>
 
 <!-- HERO -->
-<section id="inicio" class="hero">
+  <section id="inicio" class="hero">
   <div class="bubble"></div>
   <div class="bubble"></div>
   <div class="bubble"></div>
   <div class="hero-content">
     <h1>✨ Accesorios que conectan tu estilo</h1>
     <p>Encuentra los mejores accesorios para tus dispositivos</p>
-    <button class="hero-cta" id="heroCatalogBtn">Ver catálogo</button>
+    <a href="https://wa.me/59160978720" target="_blank" class="hero-cta">
+      <i class="fab fa-whatsapp"></i> Ver catálogo por WhatsApp
+    </a>
   </div>
 </section>
 
@@ -469,15 +471,27 @@
 <section id="contacto" class="section">
   <h2 class="section-title">📍 Encuéntranos</h2>
   <div class="location-container">
-    <iframe class="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1591.123456789!2d-68.123456!3d-16.500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFeria%20barrio%20lindo!5e0!3m2!1ses!2sbo!4v1234567890" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+    <!-- MAPA -->
+    <iframe 
+      class="map-frame" 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1!2d-68.123456!3d-16.500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sFeria%20barrio%20lindo!5e0!3m2!1ses!2sbo!4v1234567890" 
+      loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    
+    <!-- HORARIOS -->
     <div class="schedule-box">
       <i class="fas fa-clock" style="color: var(--primary-pink);"></i> 
       Miercoles y Sabados: 7:00 AM - 9:00 PM
     </div>
+    
+    <!-- DIRECCIÓN Y BOTÓN -->
     <div style="text-align: center;">
-      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i> Feria barrio lindo, cooperativa 19 de noviembre, pasillo R #481</p>
-      <a href="https://maps.google.com/?q=Feria+barrio+lindo+cooperativa+19+de+noviembre+pasillo+R+%23481" target="_blank" class="direction-btn">Cómo llegar</a>
+      <p><i class="fas fa-map-pin" style="color: var(--primary-pink);"></i> [ESCRIBE AQUÍ TU DIRECCIÓN EXACTA]</p>
+      <a href="https://share.google/2mzyxjDxEZKK8aEti" target="_blank" class="direction-btn">Cómo llegar 📍</a>
     </div>
+    
   </div>
 </section>
 
@@ -547,8 +561,8 @@
     const LOGO_TEXT = "store_crissley.bo";  // <--- CAMBIA AQUÍ EL TEXTO DEL LOGO
     
     // Aplicar logo en todos los lugares
-    document.getElementById('logoText').textContent = LOGO_TEXT;
-    document.getElementById('footerLogoText').textContent = LOGO_TEXT;
+    document.getElementById('SC').textContent = LOGO_TEXT;
+    document.getElementById('SC').textContent = LOGO_TEXT;
     
     // ---------- PASOS (cómo pedir) ----------
     const stepsContainer = document.getElementById('stepsContainer');
@@ -618,7 +632,7 @@
     const cartBtn = document.getElementById('cartBtn');
     const confirmBtn = document.getElementById('confirmOrder');
     
-    // NOTA: Los productos SI se agregan desde el catálogo modal.
+    // NOTA: Los productos NO se agregan desde el catálogo modal.
     // Para agregar al carrito, el cliente debe contactar por WhatsApp o llamada.
     // El carrito aquí es solo para demostración interactiva.
     
