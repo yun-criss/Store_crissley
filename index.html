@@ -26,15 +26,24 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: var(--body-font);
-      background: var(--neutral-bg);
-      color: var(--text-dark);
-      line-height: 1.5;
-      scroll-behavior: smooth;
-      opacity: 0;
-      animation: fadeIn 0.9s ease forwards;
-    }
+   body {
+  font-family: var(--body-font);
+  
+  /* FONDO GENERAL CON IMAGEN Y CAPA SEMITRANSPARENTE */
+  background-image: url('fondo total SC.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgba(247, 245, 249, 0.9); /* Blanco semitransparente encima */
+  background-blend-mode: overlay;
+  
+  color: var(--text-dark);
+  line-height: 1.5;
+  scroll-behavior: smooth;
+  opacity: 0;
+  animation: fadeIn 0.9s ease forwards;
+}
     @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
     a { text-decoration: none; color: inherit; }
